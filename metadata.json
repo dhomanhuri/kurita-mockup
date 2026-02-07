@@ -1,0 +1,8 @@
+{
+  "name": "Kurita Water Industries Mockup",
+  "description": "A high-end corporate mockup for Kurita Water Industries, featuring advanced water treatment solutions, sustainability dashboards, and a Gemini-powered water wisdom assistant.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
