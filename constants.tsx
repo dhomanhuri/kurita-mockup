@@ -5,6 +5,7 @@ export const LOGO_URL = 'https://www.kurita-water.com/assets/images/common/logo_
 
 export const NAV_ITEMS: NavItem[] = [
   { label: 'Home', id: 'home' },
+  { label: 'About', id: 'about' },
   { 
     label: 'Solutions', 
     id: 'solutions',
@@ -40,19 +41,19 @@ export const SOLUTIONS: Solution[] = [
     title: 'Ultrapure Water Supply',
     description: 'Specialized solutions for semiconductor and LCD manufacturing requiring the highest water purity standards.',
     icon: 'fa-droplet',
-    image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1628595351029-c2bf17511435?auto=format&fit=crop&q=80&w=800',
   },
   {
     title: 'Wastewater Reclamation',
     description: 'Advanced membrane technologies and chemical treatments to turn industrial wastewater into reusable resources.',
     icon: 'fa-recycle',
-    image: 'https://images.unsplash.com/photo-1584467541268-b040f83be3fd?auto=format&fit=crop&q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&q=80&w=800',
   },
   {
     title: 'Cooling Water Systems',
     description: 'Chemical and mechanical treatments to prevent scaling, corrosion, and biofouling in cooling towers.',
     icon: 'fa-snowflake',
-    image: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?auto=format&fit=crop&q=80&w=800',
   },
 ];
 
@@ -71,7 +72,7 @@ export const NEWS_ITEMS: NewsItem[] = [
     category: 'Corporate',
     title: 'Kurita Expands Water Treatment Facilities in Southeast Asia',
     excerpt: 'Strategic expansion to support growing industrial demand for sustainable water solutions in the region.',
-    image: 'https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800',
   },
   {
     id: '2',
@@ -79,7 +80,7 @@ export const NEWS_ITEMS: NewsItem[] = [
     category: 'Innovation',
     title: 'New AI-Powered Membrane Monitoring System Launched',
     excerpt: 'Revolutionary technology reduces maintenance costs and energy consumption in wastewater reclamation.',
-    image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=800',
   },
   {
     id: '3',
@@ -87,7 +88,7 @@ export const NEWS_ITEMS: NewsItem[] = [
     category: 'Sustainability',
     title: 'Kurita Achieves Platinum ESG Rating for Second Consecutive Year',
     excerpt: 'Commitment to environmental excellence and social responsibility recognized by global rating agency.',
-    image: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&q=80&w=800',
   },
 ];
 

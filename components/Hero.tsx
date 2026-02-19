@@ -1,111 +1,117 @@
-
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Earth3D from './Earth3D';
 
 const Hero: React.FC = () => {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [showVideo, setShowVideo] = useState(false);
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePos({
-        x: (e.clientX / window.innerWidth - 0.5) * 20,
-        y: (e.clientY / window.innerHeight - 0.5) * 20,
-      });
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
   return (
-    <section id="home" className="relative min-h-[110vh] flex items-center overflow-hidden bg-blue-900 pt-20">
-      {/* Background Video Layer */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-950 via-blue-900/60 to-transparent z-10"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-blue-900 z-10"></div>
-        <video 
-          autoPlay 
-          muted 
-          loop 
-          playsInline
-          className="w-full h-full object-cover opacity-40 scale-110"
-        >
-          <source src="https://assets.mixkit.co/videos/preview/mixkit-close-up-of-a-blue-liquid-surface-42721-large.mp4" type="video/mp4" />
-        </video>
+    <section id="home" className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-white">
+      {/* Abstract Background Elements */}
+      <div className="absolute top-0 right-0 w-2/3 h-full bg-slate-50 skew-x-12 translate-x-32 z-0"></div>
+      <div className="absolute bottom-0 left-0 w-1/3 h-1/2 bg-blue-50/50 rounded-tr-[100px] z-0"></div>
+      
+      {/* Floating Particles */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <div className="absolute top-20 left-10 w-4 h-4 bg-green-400 rounded-full opacity-20 animate-float" style={{ animationDelay: '0s' }}></div>
+        <div className="absolute top-40 right-20 w-6 h-6 bg-blue-600 rounded-full opacity-10 animate-float" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute bottom-20 left-1/3 w-3 h-3 bg-slate-900 rounded-full opacity-10 animate-float" style={{ animationDelay: '1s' }}></div>
       </div>
 
-      <div className="container mx-auto px-6 relative z-20">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-0">
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="flex flex-col lg:flex-row items-center justify-between">
           
-          {/* Main Content (Left) */}
-          <div className="lg:w-[55%] text-white">
-            <div className="inline-flex items-center space-x-3 bg-blue-500/10 backdrop-blur-2xl border border-blue-400/20 px-5 py-2.5 rounded-full mb-10 fade-in shadow-2xl shadow-blue-500/10" style={{ animationDelay: '0.1s' }}>
-              <span className="flex h-2.5 w-2.5 rounded-full bg-cyan-400 animate-pulse"></span>
-              <span className="text-[11px] font-black tracking-[0.25em] uppercase text-cyan-100/90">Pioneering Water Solutions</span>
+          {/* Left Content */}
+          <div className="lg:w-[55%] lg:pr-12 relative z-20">
+            <div className="inline-block px-4 py-2 bg-slate-100 rounded-lg mb-8 border-l-4 border-green-500">
+              <span className="text-sm font-bold text-slate-600 tracking-wide uppercase">Sustainable Technology</span>
             </div>
             
-            <h1 className="text-6xl md:text-8xl xl:text-[110px] font-black leading-[0.85] mb-10 tracking-tighter fade-in" style={{ animationDelay: '0.3s' }}>
-              RESTORING <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-br from-blue-400 via-cyan-300 to-blue-600">THE BLUE <br/>PLANET</span>
+            <h1 className="text-6xl lg:text-7xl font-bold text-slate-900 leading-tight mb-8">
+              Purifying Water <br/>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-900 via-blue-700 to-green-500">
+                Enriching Life
+              </span>
             </h1>
             
-            <p className="text-xl md:text-2xl text-blue-100/70 mb-12 leading-relaxed max-w-2xl font-light fade-in" style={{ animationDelay: '0.5s' }}>
-              Through advanced water-saving technologies and sustainable cycles, we're committed to preserving Earth's most vital resource for generations to come.
+            <p className="text-xl text-slate-600 leading-relaxed mb-10 max-w-lg">
+              We combine advanced water treatment technologies with digital innovation to create a sustainable future where nature and industry coexist in harmony.
             </p>
             
-            <div className="flex flex-wrap items-center gap-6 fade-in" style={{ animationDelay: '0.7s' }}>
-              <button className="bg-white text-blue-900 px-10 py-5 rounded-2xl font-black text-lg transition-all transform hover:scale-105 hover:shadow-[0_20px_60px_rgba(255,255,255,0.2)] flex items-center group">
-                Explore Solutions
-                <i className="fas fa-arrow-right ml-4 group-hover:translate-x-2 transition-transform"></i>
+            <div className="flex flex-wrap gap-4">
+              <button className="px-8 py-4 bg-blue-900 text-white rounded-xl font-bold hover:bg-blue-800 transition-all shadow-lg hover:shadow-blue-900/30 flex items-center group">
+                Our Solutions
+                <i className="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
               </button>
               <button 
                 onClick={() => setShowVideo(true)}
-                className="group flex items-center space-x-4 text-white/80 hover:text-white transition-colors"
+                className="px-8 py-4 bg-white text-slate-900 border-2 border-slate-200 rounded-xl font-bold hover:border-green-500 hover:text-green-600 transition-all flex items-center"
               >
-                <div className="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-white/10 transition-all">
-                  <i className="fas fa-play text-sm ml-1"></i>
-                </div>
-                <span className="font-bold tracking-wider">OUR STORY</span>
+                <i className="fas fa-play-circle mr-3 text-xl"></i>
+                Watch Video
               </button>
             </div>
-          </div>
 
-          {/* 3D Earth Animation (Right) */}
-          <div className="lg:w-[45%] w-full flex justify-center items-center relative fade-in" style={{ animationDelay: '0.9s' }}>
-            <div className="absolute inset-0 bg-blue-500/20 blur-[150px] rounded-full animate-pulse"></div>
-            <div className="w-full aspect-square max-w-[600px] relative">
-              <Earth3D />
-              
-              {/* Floating Data Card */}
-              <div className="absolute top-1/4 -right-4 lg:-right-8 glass-card p-6 rounded-3xl border border-white/10 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] animate-float backdrop-blur-2xl">
-                <div className="flex items-center space-x-3 mb-3">
-                  <div className="w-3 h-3 rounded-full bg-cyan-400 animate-ping"></div>
-                  <span className="text-[11px] font-black uppercase tracking-widest text-blue-900/60">Global Impact</span>
-                </div>
-                <div className="text-4xl font-black text-blue-900 mb-1">310M+</div>
-                <div className="text-[11px] font-bold text-blue-900/40 uppercase tracking-tighter">m³ Water Restored</div>
+            <div className="mt-16 flex items-center gap-8 border-t border-slate-200 pt-8">
+              <div>
+                <h4 className="text-3xl font-black text-blue-900">70+</h4>
+                <p className="text-sm text-slate-500 font-medium">Years Experience</p>
               </div>
-
-              {/* Stats Badge */}
-              <div className="absolute bottom-1/4 -left-4 lg:-left-12 bg-blue-600/90 backdrop-blur-xl p-5 rounded-3xl border border-blue-400/30 shadow-2xl rotate-[-6deg]">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center">
-                    <i className="fas fa-leaf text-cyan-300"></i>
-                  </div>
-                  <div>
-                    <div className="text-2xl font-black text-white">150K</div>
-                    <div className="text-[10px] font-bold text-blue-100/60 uppercase">Tons CO2 Offset</div>
-                  </div>
-                </div>
+              <div className="w-px h-10 bg-slate-200"></div>
+              <div>
+                <h4 className="text-3xl font-black text-green-600">100%</h4>
+                <p className="text-sm text-slate-500 font-medium">Eco-Friendly</p>
+              </div>
+              <div className="w-px h-10 bg-slate-200"></div>
+              <div>
+                <h4 className="text-3xl font-black text-slate-900">Global</h4>
+                <p className="text-sm text-slate-500 font-medium">Network</p>
               </div>
             </div>
           </div>
 
+          {/* Right Visual - 3D Earth Integration */}
+          <div className="lg:w-[45%] mt-16 lg:mt-0 relative flex justify-center items-center">
+            <div className="absolute inset-0 bg-gradient-to-tr from-blue-100 to-green-100 blur-[100px] rounded-full opacity-50"></div>
+            
+            <div className="w-full aspect-square max-w-[600px] relative z-10">
+              <Earth3D />
+              
+              {/* Glassmorphic Data Card 1 */}
+              <div className="absolute top-20 -right-4 lg:-right-8 bg-white/80 p-5 rounded-2xl border border-white/50 shadow-[0_20px_50px_-10px_rgba(0,71,171,0.15)] animate-float backdrop-blur-md max-w-[220px]" style={{ animationDelay: '1s' }}>
+                <div className="flex items-center space-x-3 mb-3">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center text-[#0047AB] shadow-inner">
+                    <i className="fas fa-water text-lg"></i>
+                  </div>
+                  <div>
+                    <div className="text-[10px] font-bold uppercase tracking-widest text-[#64748B]">Water Restored</div>
+                    <div className="text-xs font-medium text-blue-500">Global Impact</div>
+                  </div>
+                </div>
+                <div className="text-4xl font-black text-[#0B1C33] mb-1 tracking-tight">310M+</div>
+                <div className="text-xs font-bold text-[#64748B] flex items-center gap-1">
+                  Cubic Meters / Year
+                  <span className="text-green-500 bg-green-50 px-1.5 py-0.5 rounded text-[10px]">+12%</span>
+                </div>
+              </div>
+
+              {/* Glassmorphic Data Card 2 */}
+              <div className="absolute bottom-20 -left-4 lg:-left-12 bg-white/80 p-5 rounded-2xl border border-white/50 shadow-[0_20px_50px_-10px_rgba(0,71,171,0.15)] animate-float backdrop-blur-md max-w-[200px]" style={{ animationDelay: '2.5s' }}>
+                <div className="flex items-center space-x-3 mb-3">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-green-50 to-green-100 flex items-center justify-center text-green-600 shadow-inner">
+                    <i className="fas fa-leaf text-lg"></i>
+                  </div>
+                  <div>
+                    <div className="text-[10px] font-bold uppercase tracking-widest text-[#64748B]">CO₂ Reduced</div>
+                    <div className="text-xs font-medium text-green-500">Sustainability</div>
+                  </div>
+                </div>
+                <div className="text-3xl font-black text-[#0B1C33] mb-1 tracking-tight">50K+</div>
+                <div className="text-xs font-bold text-[#64748B]">Tons / Year</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-
-      {/* Decorative Gradient */}
-      <div className="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-blue-900 to-transparent z-10"></div>
 
       {/* Video Modal */}
       {showVideo && (

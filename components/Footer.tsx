@@ -1,19 +1,25 @@
 
 import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { LOGO_URL } from '../constants';
 
 const Footer: React.FC = () => {
+  const location = useLocation();
+  const currentCountry = location.pathname.split('/')[1] || 'id';
+
   return (
     <footer className="bg-[#000814] text-white pt-32 pb-12 border-t border-white/5">
       <div className="container mx-auto px-6">
         <div className="grid md:grid-cols-4 gap-16 mb-24">
           <div className="col-span-1 md:col-span-1">
             <div className="mb-10">
-              <img 
-                src={LOGO_URL} 
-                alt="Kurita Logo" 
-                className="h-10 w-auto brightness-0 invert"
-              />
+              <Link to={`/${currentCountry}/`}>
+                <img 
+                  src={LOGO_URL} 
+                  alt="Kurita Logo" 
+                  className="h-10 w-auto brightness-0 invert"
+                />
+              </Link>
             </div>
             <p className="text-slate-400 leading-relaxed mb-10 font-medium">
               A leading global provider of water treatment chemicals, facilities, and maintenance services, dedicated to creating shared value for society and the planet.
@@ -35,10 +41,10 @@ const Footer: React.FC = () => {
           <div>
             <h5 className="text-sm font-black uppercase tracking-[0.2em] mb-10 text-white">Company</h5>
             <ul className="space-y-5 text-slate-400 font-medium">
-              <li><a href="#" className="hover:text-blue-400 transition-colors flex items-center group">
+              <li><Link to={`/${currentCountry}/about`} className="hover:text-blue-400 transition-colors flex items-center group">
                 <span className="w-0 group-hover:w-4 h-px bg-blue-400 mr-0 group-hover:mr-3 transition-all"></span>
                 About Us
-              </a></li>
+              </Link></li>
               <li><a href="#" className="hover:text-blue-400 transition-colors flex items-center group">
                 <span className="w-0 group-hover:w-4 h-px bg-blue-400 mr-0 group-hover:mr-3 transition-all"></span>
                 Our History

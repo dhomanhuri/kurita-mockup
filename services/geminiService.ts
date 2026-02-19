@@ -9,7 +9,7 @@ export const askWaterExpert = async (prompt: string): Promise<string> => {
       model: "gemini-3-flash-preview",
       contents: prompt,
       config: {
-        systemInstruction: `You are the Kurita Water Wisdom AI. 
+        systemInstruction: `You are the Kurita AI Expert. 
         Kurita Water Industries Ltd. is a global leader in water treatment.
         You are an expert in water chemistry, sustainability, and industrial water systems.
         Answer questions about water conservation, ultrapure water, cooling systems, and wastewater reclamation.
@@ -21,6 +21,6 @@ export const askWaterExpert = async (prompt: string): Promise<string> => {
     return response.text || "I'm sorry, I couldn't process that request at the moment.";
   } catch (error) {
     console.error("Gemini Error:", error);
-    return "The Water Wisdom AI is currently recalibrating its filters. Please try again later.";
+    return "The Kurita AI Expert is currently recalibrating its filters. Please try again later.";
   }
 };

@@ -5,7 +5,7 @@ import { Message } from '../types';
 
 const AIExpert: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'model', text: "Hello! I'm the Kurita Water Wisdom AI. How can I assist you with your water treatment or sustainability questions today?" }
+    { role: 'model', text: "Hello! I'm the Kurita AI Expert. How can I assist you with your water treatment or sustainability questions today?" }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -37,10 +37,10 @@ const AIExpert: React.FC = () => {
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
             <div className="inline-block px-4 py-1.5 bg-blue-50 text-blue-600 rounded-full text-xs font-black uppercase tracking-[0.2em] mb-6">
-              Intelligence Assistant (opsional, hanya ketika kurita mau pakai chatbot)
+              Intelligence Assistant
             </div>
             <h2 className="text-5xl md:text-6xl font-black mb-6 tracking-tight section-heading-gradient">
-              Kurita <span className="text-blue-600">Wisdom AI</span>
+              Kurita <span className="text-blue-600">AI Expert</span>
             </h2>
             <p className="text-slate-500 text-xl max-w-2xl mx-auto font-light leading-relaxed">
               Experience the power of Kurita's expertise. Ask about ultrapure water, chemical engineering, or our global sustainability initiatives.
@@ -68,7 +68,7 @@ const AIExpert: React.FC = () => {
               </div>
               <div className="mt-auto p-6 bg-blue-600 rounded-[2rem] text-white">
                 <p className="text-xs font-bold leading-relaxed opacity-90">
-                  Powered by Google Gemini & Kurita Data Engine
+                  Powered by PT. Kurita Indonesia
                 </p>
               </div>
             </div>

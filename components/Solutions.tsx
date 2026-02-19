@@ -23,7 +23,7 @@ const Solutions: React.FC = () => {
           <div className="lg:w-1/2 w-full order-2 lg:order-1 relative z-10">
             <div className="inline-flex items-center space-x-2 text-blue-600 mb-6">
               <span className="w-10 h-[2px] bg-blue-600"></span>
-              <span className="text-xs font-black uppercase tracking-widest">Technology Spotlight (ini masih sangat opsional, hanya ketika kita menemukan product campaign kurita)</span>
+              <span className="text-xs font-black uppercase tracking-widest">Technology Spotlight </span>
             </div>
             <h3 className="text-4xl md:text-5xl font-black text-blue-900 mb-8 leading-tight">
               Ultrapure Water <br/>Generation System

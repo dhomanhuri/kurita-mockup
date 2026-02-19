@@ -28,12 +28,37 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+  const handleNavClick = (id: string) => {
     setMobileMenuOpen(false);
+
+    // Specific logic for pages
+    if (id === 'about') {
+      navigate(`/${currentCountry}/about`);
+      return;
+    }
+
+    if (id === 'home') {
+      navigate(`/${currentCountry}/`);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    // For other sections, if we're not on the home page, navigate to home first
+    if (location.pathname !== `/${currentCountry}/` && location.pathname !== `/${currentCountry}`) {
+      navigate(`/${currentCountry}/`);
+      // Use a timeout to allow the home page to load before scrolling
+      setTimeout(() => {
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
   };
 
   const NavButton: React.FC<{ item: NavItem; depth?: number }> = ({ item, depth = 0 }) => {
@@ -42,10 +67,10 @@ const Navbar: React.FC = () => {
     return (
       <div className={`relative group/nav-level-${depth}`}>
         <button
-          onClick={() => !hasChildren && scrollToSection(item.id)}
+          onClick={() => !hasChildren && handleNavClick(item.id)}
           className={`px-5 py-2.5 text-sm font-semibold transition-all duration-300 flex items-center gap-1 ${
             depth > 0 ? 'w-full text-left justify-between hover:bg-blue-50 text-gray-700 rounded-lg' : 
-            `rounded-full ${isScrolled ? 'text-gray-700 hover:text-blue-600 hover:bg-blue-500/10' : 'text-white/90 hover:text-white hover:bg-white/10'}`
+            `rounded-full ${isScrolled ? 'text-gray-700 hover:text-blue-600 hover:bg-blue-500/10' : 'text-[#0B1C33]/90 hover:text-[#0047AB] hover:bg-[#0047AB]/5'}`
           }`}
         >
           <span>{item.label}</span>
@@ -70,36 +95,39 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-500 ${isScrolled ? 'bg-white/80 backdrop-blur-lg shadow-sm py-4' : 'bg-transparent py-6 text-white'}`}>
+    <nav className={`fixed w-full z-50 transition-all duration-500 ${isScrolled ? 'bg-white/90 backdrop-blur-xl shadow-sm py-3' : 'bg-transparent py-5 text-slate-800'}`}>
       <div className="container mx-auto px-6 flex justify-between items-center">
-        <div className="flex items-center cursor-pointer group" onClick={() => scrollToSection('home')}>
+        <div className="flex items-center cursor-pointer group" onClick={() => handleNavClick('home')}>
           <img 
             src={LOGO_URL} 
             alt="Kurita Logo" 
-            className={`h-8 md:h-10 w-auto transition-all duration-300 ${!isScrolled ? 'brightness-0 invert' : ''}`}
+            className="h-8 md:h-10 w-auto transition-all duration-300"
           />
         </div>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center space-x-1">
+        <div className="hidden md:flex items-center space-x-6">
           {NAV_ITEMS.map((item) => (
             <NavButton key={item.id} item={item} />
           ))}
           
           {/* Country Selector */}
-          <div className="relative group/country ml-4">
-            <button className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold transition-all duration-300 ${isScrolled ? 'text-gray-700 hover:bg-gray-100' : 'text-white hover:bg-white/10'}`}>
+          <div className="relative group/country ml-6 pl-6 border-l border-slate-200/50">
+            <button className={`flex items-center gap-2 px-3 py-2 rounded-full text-sm font-bold transition-all duration-300 ${isScrolled ? 'text-slate-600 hover:bg-slate-100' : 'text-[#0B1C33]/90 hover:text-[#0047AB] hover:bg-[#0047AB]/5'}`}>
               <i className="fas fa-globe"></i>
               <span>{currentCountry.toUpperCase()}</span>
               <i className="fas fa-chevron-down text-[10px]"></i>
             </button>
             <div className="absolute right-0 top-full pt-2 opacity-0 invisible group-hover/country:opacity-100 group-hover/country:visible transition-all duration-300 min-w-[150px]">
-              <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 py-2">
+              <div className="bg-white rounded-xl shadow-xl border border-slate-100 py-2">
                 {countries.map((c) => (
                   <button
                     key={c.code}
-                    onClick={() => navigate(`/${c.code}/`)}
-                    className={`w-full text-left px-4 py-2 text-sm hover:bg-blue-50 transition-colors ${currentCountry === c.code ? 'text-blue-600 font-bold' : 'text-gray-700'}`}
+                    onClick={() => {
+                      const currentPath = location.pathname.split('/').slice(2).join('/');
+                      navigate(`/${c.code}/${currentPath}`);
+                    }}
+                    className={`w-full text-left px-4 py-2 text-sm font-medium hover:bg-blue-50 transition-colors ${currentCountry === c.code ? 'text-blue-600 font-bold' : 'text-slate-600'}`}
                   >
                     {c.label}
                   </button>
@@ -108,14 +136,14 @@ const Navbar: React.FC = () => {
             </div>
           </div>
 
-          <button className={`ml-4 px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 ${isScrolled ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-md hover:shadow-lg' : 'bg-white text-blue-900 hover:bg-blue-50 shadow-xl'}`}>
+          <button className={`ml-4 px-6 py-2.5 rounded-full text-sm font-bold uppercase tracking-wider transition-all duration-300 ${isScrolled ? 'bg-[#0047AB] text-white hover:bg-[#003380] shadow-md hover:shadow-lg' : 'bg-[#0047AB] text-white hover:bg-[#003380] shadow-lg shadow-blue-500/20'}`}>
             Contact Us
           </button>
         </div>
 
         {/* Mobile Toggle */}
         <button 
-          className={`md:hidden w-10 h-10 flex items-center justify-center rounded-full transition-colors ${isScrolled ? 'text-blue-900 hover:bg-gray-100' : 'text-white hover:bg-white/10'}`} 
+          className={`md:hidden w-10 h-10 flex items-center justify-center rounded-full transition-colors ${isScrolled ? 'text-slate-800 hover:bg-slate-100' : 'text-[#0B1C33] hover:bg-[#0047AB]/5'}`} 
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
           <i className={`fas ${mobileMenuOpen ? 'fa-times' : 'fa-bars-staggered'} text-xl`}></i>
@@ -132,10 +160,11 @@ const Navbar: React.FC = () => {
                 <button
                   key={c.code}
                   onClick={() => {
-                    navigate(`/${c.code}/`);
+                    const currentPath = location.pathname.split('/').slice(2).join('/');
+                    navigate(`/${c.code}/${currentPath}`);
                     setMobileMenuOpen(false);
                   }}
-                  className={`px-3 py-1 rounded-full text-xs font-bold transition-all ${currentCountry === c.code ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-600'}`}
+                  className={`px-4 py-2 rounded-full text-sm font-bold transition-all ${currentCountry === c.code ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-600'}`}
                 >
                   {c.code.toUpperCase()}
                 </button>
@@ -145,7 +174,7 @@ const Navbar: React.FC = () => {
             {NAV_ITEMS.map((item) => (
               <div key={item.id} className="flex flex-col space-y-2">
                 <button
-                  onClick={() => !item.children && scrollToSection(item.id)}
+                  onClick={() => !item.children && handleNavClick(item.id)}
                   className="text-left font-bold text-xl tracking-tight text-gray-900 hover:text-blue-600 transition-colors flex justify-between items-center"
                 >
                   {item.label}
@@ -155,7 +184,7 @@ const Navbar: React.FC = () => {
                     {item.children.map((child) => (
                       <div key={child.id} className="flex flex-col space-y-1">
                         <button
-                          onClick={() => !child.children && scrollToSection(child.id)}
+                          onClick={() => !child.children && handleNavClick(child.id)}
                           className="text-left font-semibold text-gray-600 hover:text-blue-600 text-sm"
                         >
                           {child.label}
@@ -165,7 +194,7 @@ const Navbar: React.FC = () => {
                             {child.children.map((subChild) => (
                               <button
                                 key={subChild.id}
-                                onClick={() => scrollToSection(subChild.id)}
+                                onClick={() => handleNavClick(subChild.id)}
                                 className="text-left text-gray-500 hover:text-blue-600 text-xs py-1"
                               >
                                 {subChild.label}

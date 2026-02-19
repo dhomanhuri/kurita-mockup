@@ -29,28 +29,55 @@ const Sustainability: React.FC = () => {
 
           <div className="lg:w-1/2">
             <div className="inline-block px-4 py-1.5 bg-blue-50 text-blue-600 rounded-full text-xs font-black uppercase tracking-[0.2em] mb-8">
-              Our CSV Commitment
+              Sustainability at Kurita
             </div>
-            <h2 className="text-5xl md:text-6xl font-black mb-8 leading-[1.1] tracking-tight section-heading-gradient">
-              Creating Shared Value <br/><span className="text-blue-600">with the Planet</span>
+            <h2 className="text-4xl md:text-5xl font-black mb-8 leading-[1.1] tracking-tight section-heading-gradient">
+              Pioneering <br/><span className="text-blue-600">New Value for Water</span>
             </h2>
-            <p className="text-slate-500 text-xl mb-12 leading-relaxed font-light">
-              We define "CSV" as creating value for both society and the economy through our business activities. Our focus is on solving water scarcity and creating sustainable energy cycles.
+            <p className="text-slate-500 text-lg mb-12 leading-relaxed font-light">
+              Contributing to a sustainable society by integrating environmental and social impact into our core growth strategy.
             </p>
             
             <div className="space-y-8">
               {[
-                { title: 'Water Security', desc: 'Ensuring stable water supply for critical industries and communities.', icon: 'fa-shield-halved', color: 'bg-blue-50 text-blue-600' },
-                { title: 'Circular Economy', desc: 'Transforming waste into valuable resources through reclamation.', icon: 'fa-arrows-spin', color: 'bg-cyan-50 text-cyan-600' },
-                { title: 'Nature Harmony', desc: 'Restoring forest ecosystems and protecting biodiversity.', icon: 'fa-leaf', color: 'bg-emerald-50 text-emerald-600' },
+                { 
+                  title: 'Message from Management', 
+                  desc: "Leadership's vision for a sustainable future.", 
+                  icon: 'fa-user-tie', 
+                  color: 'bg-blue-50 text-blue-600' 
+                },
+                { 
+                  title: 'Sustainability & Materiality', 
+                  desc: "Our core goals, metrics, and governance system.", 
+                  icon: 'fa-diagram-project', 
+                  color: 'bg-cyan-50 text-cyan-600' 
+                },
+                { 
+                  title: 'Commitment to Materiality', 
+                  desc: 'Progress on our eight key strategic themes.', 
+                  icon: 'fa-bullseye', 
+                  color: 'bg-emerald-50 text-emerald-600' 
+                },
+                { 
+                  title: 'Social Responsibility', 
+                  desc: 'Sustainable procurement and community citizenship.', 
+                  icon: 'fa-hand-holding-heart', 
+                  color: 'bg-indigo-50 text-indigo-600' 
+                },
+                { 
+                  title: 'Reports & ESG Data', 
+                  desc: 'Official sustainability reports and international standards.', 
+                  icon: 'fa-file-contract', 
+                  color: 'bg-slate-50 text-slate-600' 
+                },
               ].map((item, i) => (
                 <div key={i} className="flex items-start group">
-                  <div className={`${item.color} w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0 mr-6 group-hover:scale-110 transition-transform shadow-sm`}>
-                    <i className={`fas ${item.icon} text-2xl`}></i>
+                  <div className={`${item.color} w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 mr-6 group-hover:scale-110 transition-transform shadow-sm`}>
+                    <i className={`fas ${item.icon} text-xl`}></i>
                   </div>
                   <div>
-                    <h4 className="text-2xl font-black text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">{item.title}</h4>
-                    <p className="text-slate-500 text-xl leading-relaxed font-medium">{item.desc}</p>
+                    <h4 className="text-xl font-black text-slate-900 mb-1 group-hover:text-blue-600 transition-colors">{item.title}</h4>
+                    <p className="text-slate-500 text-base leading-relaxed font-medium">{item.desc}</p>
                   </div>
                 </div>
               ))}
